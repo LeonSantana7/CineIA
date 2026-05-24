@@ -1,33 +1,117 @@
-import requests
-import json
+from services.tmdb_service import buscar_filmes
+from services.n8n_service import enviar_para_n8n
+from utils.arquivo_utils import salvar_busca, ler_historico, exportar_historico_txt
 
-print("\n====== BEM VINDO AO CINEIA ======")
-print("=== TEU RECOMENDADOR DE FILMES ===")
+
+GENEROS = [
+    "ação",
+    "comédia",
+    "terror",
+    "romance",
+    "aventura",
+    "sci-fi",
+    "animação",
+    "documentário",
+    "fantasia",
+]
+HUMORES = [
+    "relaxado",
+    "empolgado",
+    "feliz",
+    "triste",
+    "estressado",
+    "romântico",
+    "entediado",
+    "reflexivo",
+]
 
 
 def exibir_menu():
-    print("\nO que deseja fazer?")
-    print("1. Receber recomendação")
-    print("2. Ver histórico")
-    print("3. Sair")
+    print("\n🎬 Bem-vindo ao CineIA!")
 
-exibir_menu()
-opcao = input("Digite o número da opção desejada: ")
-if opcao == "1":
-    genero = input("Digite o gênero do filme (ex: ação, comédia, drama): ")
-    resposta = requests.get(f"http://localhost:5000/recomendar?genero={genero}")
-    if resposta.status_code == 200:
-        filme = resposta.json()
-        print(f"\nRecomendação: {filme['titulo']} ({filme['ano']}) - {filme['genero']}")
-    else:
-        print("Erro ao obter recomendação.")
-elif opcao == "2":
-    resposta = requests.get("http://localhost:5000/historico")
-    if resposta.status_code == 200:
-        historico = resposta.json()
-        print("\nHistórico de Recomendações:")
-        for item in historico:
-            print(f"- {item['titulo']} ({item['ano']}) - {item['genero']}")
-    else:
-        print("Erro ao obter histórico.")            
-exibir_menu()
+
+def pedir_genero():
+    print(f"\nGêneros disponíveis: {', '.join(GENEROS)}")
+    while True:
+        genero = input("Digite o gênero: ").strip().lower()
+        if genero in GENEROS:
+            return genero
+        print("Gênero inválido. Tente novamente.")
+
+
+def pedir_humor():
+    print(f"\nHumores disponíveis: {', '.join(HUMORES)}")
+    while True:
+        humor = input("Como você está? ").strip().lower()
+        if humor in HUMORES:
+            return humor
+        print("Humor inválido. Tente novamente.")
+
+
+def exibir_filmes(filmes):
+    print("\nFilmes encontrados:")
+    print("-" * 40)
+    for i, f in enumerate(filmes, 1):
+        print(f"{i}. {f['titulo']} ({f['ano']}) — ⭐ {f['nota']}")
+        print(f"   {f['sinopse'][:100]}...")
+        print()
+
+
+def main():
+    exibir_menu()
+
+    while True:
+        print("\nO que deseja fazer?")
+        print("1. Receber recomendação")
+        print("2. Ver histórico")
+        print("3. Exportar histórico (.txt)")
+        print("4. Sair")
+
+        opcao = input("\nEscolha: ").strip()
+
+        if opcao == "1":
+            genero = pedir_genero()
+            humor = pedir_humor()
+
+            print("\nBuscando filmes...")
+            filmes = buscar_filmes(genero)
+
+            if not filmes:
+                print("Nenhum filme encontrado. Tente novamente.")
+                continue
+
+            exibir_filmes(filmes)
+
+            print("Consultando IA...")
+            resposta = enviar_para_n8n(genero, humor, filmes)
+            recomendacao = resposta.get("recomendacao", "Sem resposta.")
+            salvar_busca(genero, humor, recomendacao)
+            print(f"\nIA recomenda: {recomendacao}")
+
+        elif opcao == "2":
+            historico = ler_historico()
+            if not historico:
+                print("\nNenhuma busca no histórico ainda.")
+            else:
+                print("\nHistórico de buscas:")
+                for h in historico[-5:]:
+                    rec = h.get("recomendacao", "")[:60]
+                    print(f"• {h['data']} — {h['genero']} | {h['humor']} → {rec}...")
+
+        elif opcao == "3":
+            caminho = exportar_historico_txt()
+            if caminho:
+                print(f"\nHistórico exportado para {caminho}")
+            else:
+                print("\nNenhuma busca no histórico para exportar.")
+
+        elif opcao == "4":
+            print("\n Até logo!")
+            break
+
+        else:
+            print(" Opção inválida.")
+
+
+if __name__ == "__main__":
+    main()
