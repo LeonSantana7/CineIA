@@ -1,7 +1,7 @@
 from services.tmdb_service import buscar_filmes
-from services.filtro_service import filtrar_por_humor
 from services.n8n_service import enviar_para_n8n
 from utils.arquivo_utils import salvar_busca, ler_historico, exportar_historico_txt
+
 
 GENEROS = [
     "ação",
@@ -28,7 +28,6 @@ HUMORES = [
 
 def exibir_menu():
     print("\n🎬 Bem-vindo ao CineIA!")
-    print("=" * 40)
 
 
 def pedir_genero():
@@ -76,7 +75,6 @@ def main():
 
             print("\nBuscando filmes...")
             filmes = buscar_filmes(genero)
-            filmes = filtrar_por_humor(filmes, humor)
 
             if not filmes:
                 print("Nenhum filme encontrado. Tente novamente.")

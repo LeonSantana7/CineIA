@@ -1,7 +1,6 @@
 import streamlit as st
 from services.tmdb_service import buscar_filmes
 from services.n8n_service import enviar_para_n8n
-from services.filtro_service import filtrar_por_humor
 from utils.arquivo_utils import salvar_busca, ler_historico  # noqa: F401
 
 st.set_page_config(page_title="CineIA", page_icon="🎬", layout="wide")
@@ -108,7 +107,6 @@ with col_c:
 if recomendar:
     with st.spinner("Buscando filmes..."):
         filmes = buscar_filmes(genero.lower())
-        filmes = filtrar_por_humor(filmes, humor)
 
     if filmes:
         st.markdown(

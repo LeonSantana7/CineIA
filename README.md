@@ -6,9 +6,8 @@ Recomendador inteligente de filmes que combina a API do TMDB com IA via n8n para
 
 1. O usuário escolhe um **gênero** e como está se sentindo (**humor**)
 2. A aplicação busca filmes na API do TMDB filtrados pelo gênero
-3. Os filmes são filtrados localmente com base no humor do usuário
-4. A lista é enviada para um webhook no n8n, onde a IA processa e retorna uma recomendação personalizada
-5. A recomendação e a busca são salvas no histórico local (`data/historico.json`)
+3. A lista de filmes é enviada para um webhook no n8n, onde a IA considera o humor e retorna uma recomendação personalizada
+4. A recomendação e a busca são salvas no histórico local (`data/historico.json`)
 
 ## Pré-requisitos
 
@@ -119,16 +118,9 @@ Disponível no CLI pela opção **3** do menu. Gera o arquivo `data/historico.tx
 
 ## Humores disponíveis
 
-| Humor | Como o filtro age |
-|---|---|
-| Relaxado | Filmes com nota ≥ 6.5, ordenados por nota |
-| Empolgado | Filmes com nota ≥ 7.0, ordenados por nota |
-| Feliz | Filmes com nota ≥ 6.5, leve e acessível |
-| Triste | Top 5 melhores avaliados do gênero |
-| Estressado | Seleção aleatória entre nota ≥ 6.0 |
-| Romântico | Nota ≥ 6.0, priorizando os mais recentes |
-| Entediado | Seleção aleatória sem filtro de nota |
-| Reflexivo | Filmes com nota ≥ 7.5, só os melhores |
+`Relaxado` · `Empolgado` · `Feliz` · `Triste` · `Estressado` · `Romântico` · `Entediado` · `Reflexivo`
+
+O humor é enviado para a IA no n8n, que considera o estado emocional do usuário para personalizar a recomendação.
 
 ## Estrutura do projeto
 
@@ -138,7 +130,6 @@ CineIA/
 ├── main.py                  # Interface CLI
 ├── services/
 │   ├── tmdb_service.py      # Busca filmes na API do TMDB
-│   ├── filtro_service.py    # Filtra filmes pelo humor do usuário
 │   └── n8n_service.py       # Envia dados ao webhook n8n e recebe recomendação
 ├── utils/
 │   └── arquivo_utils.py     # Leitura, gravação e exportação do histórico

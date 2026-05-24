@@ -1,23 +1,43 @@
 HISTÓRICO DE RECOMENDAÇÕES — CineIA
 ========================================
 
-Data:        23/05/2026 19:22
+Data:        24/05/2026 15:38
+Gênero:      comédia
+Humor:       triste
+Recomendação:Eu recomendo "Zootopia: Essa Cidade é o Bicho" para te alegrar o dia!
+----------------------------------------
+Data:        24/05/2026 15:46
 Gênero:      Comédia
-Humor:       Animado
-Recomendação:Eu super recomendo "A Nova Onda do Imperador" para você, é uma comédia divertida e animada que vai te deixar sorrindo!
-----------------------------------------
-Data:        23/05/2026 19:32
-Gênero:      Terror
-Humor:       Feliz
-Recomendação:Eu super recomendo "Sorria" para você, é um filme de terror que vai te deixar na ponta da cadeira!
-----------------------------------------
-Data:        23/05/2026 19:32
-Gênero:      Terror
 Humor:       Triste
-Recomendação:Se você está se sentindo triste e precisa de um filme de terror, eu recomendo "Invasão Zumbi"!
+Recomendação:Eu recomendo "A Nova Onda do Imperador" para te animar e te fazer rir!
 ----------------------------------------
-Data:        23/05/2026 19:35
+Data:        24/05/2026 15:46
+Gênero:      Ação
+Humor:       Triste
+Recomendação:Se você está procurando por um filme de ação para animar o seu dia, eu recomendo "Chainsaw Man – O Filme: Arco da Reze"!
+----------------------------------------
+Data:        24/05/2026 16:05
 Gênero:      ação
 Humor:       empolgado
-Recomendação:Você precisa assistir "Chainsaw Man – O Filme: Arco da Reze", é pura ação e adrenalina!
+Recomendação:Você precisa assistir "Vingança Brutal", é um filme de ação emocionante que vai te manter na ponta da cadeira!
+----------------------------------------
+Data:        24/05/2026 16:06
+Gênero:      comédia
+Humor:       entediado
+Recomendação:Eu super recomendo "Um Cabra Bom de Bola" para te animar e fazer rir!
+----------------------------------------
+Data:        24/05/2026 16:11
+Gênero:      Terror
+Humor:       Relaxado
+Recomendação:Se você está procurando por um filme de terror para assistir relaxado, eu recomendo "Terror em Silent Hill"!
+----------------------------------------
+Data:        24/05/2026 19:22
+Gênero:      Aventura
+Humor:       Reflexivo
+Recomendação:Eu super recomendo "A Odisseia" para você, uma aventura épica e reflexiva que vai te levar a uma jornada incrível!
+----------------------------------------
+Data:        24/05/2026 16:32
+Gênero:      ação
+Humor:       relaxado
+Recomendação:Você vai adorar assistir a "Jogador N° 1", um filme cheio de ação e aventura!
 ----------------------------------------
