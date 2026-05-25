@@ -2,6 +2,17 @@
 
 Recomendador inteligente de filmes que combina a API do TMDB com IA via n8n para sugerir filmes com base no gênero e no humor do usuário. Disponível em interface web (Streamlit) e linha de comando (CLI).
 
+## ✨ v2.0 — Nova Interface Aprimorada!
+
+### 🎬 Melhorias Visuais
+- **Roleta Girante**: Filmes giram em animação 3D enquanto a IA analisa
+- **Filme em Destaque**: Interface redesenhada com filme selecionado em grande foco
+- **Recomendação Realçada**: Texto da IA com tipografia premium e destaque visual
+- **Animações Fluidas**: Transições suaves e feedback visual em cada ação
+- **Design Netflix**: Tema escuro inspirado em plataformas de streaming premium
+
+---
+
 ## Como funciona
 
 1. O usuário escolhe um **gênero** e como está se sentindo (**humor**)
@@ -126,7 +137,7 @@ O humor é enviado para a IA no n8n, que considera o estado emocional do usuári
 
 ```
 CineIA/
-├── app.py                   # Interface web (Streamlit)
+├── app.py                   # Interface web (Streamlit) — REDESENHADA v2.0
 ├── main.py                  # Interface CLI
 ├── services/
 │   ├── tmdb_service.py      # Busca filmes na API do TMDB
@@ -139,5 +150,7 @@ CineIA/
 ├── .env.example             # Modelo de variáveis de ambiente
 ├── Dockerfile
 ├── docker-compose.yml
-└── requirements.txt
+├── requirements.txt
+├── README.md                # Este arquivo
+
 ```
